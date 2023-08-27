@@ -5,7 +5,7 @@ import './index.css'
 
 function App() {
   const [data, setData] = useState([]);
-  const url="";
+  // const url="https://todocode.azurewebsites.net/docs";
   const [content, setContent] = useState('');
   const [editId, setEditId] = useState(null);
 
@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    fetch('/tasks')
+    fetch('https://todocode.azurewebsites.net/tasks')
       .then(response => response.json())
       .then(data => {
         setData(data);
@@ -25,7 +25,7 @@ function App() {
   };
 
   const handlePost = () => {
-    fetch('/tasks', {
+    fetch('https://todocode.azurewebsites.net/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ function App() {
   };
 
   const handleEdit = (id, newContent) => {
-    fetch('/tasks/{task_id}', {
+    fetch('https://todocode.azurewebsites.net/tasks/{task_id}', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ function App() {
   // };
 
   const handleDelete = (id) => {
-    fetch(`/tasks/{task_id}`, {
+    fetch(`https://todocode.azurewebsites.net/tasks/{task_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
