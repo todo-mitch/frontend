@@ -4,10 +4,10 @@ import './index.css'
 
 
 function App() {
-  const [data, setData] = useState([]);
-  // const url="https://todocode.azurewebsites.net/docs";
+  const [data, setData] = useState([""]);
   const [content, setContent] = useState('');
   const [editId, setEditId] = useState(null);
+  // const mocData = [{"title":"クリーニングを取りに行く","id":1,"done":false},{"title":"動いてるやん","id":2,"done":false},{"title":null,"id":3,"done":false},{"title":null,"id":4,"done":false},{"title":"testname","id":5,"done":false}]
 
   useEffect(() => {
     fetchData();
@@ -16,8 +16,9 @@ function App() {
   const fetchData = () => {
     fetch('https://todocode.azurewebsites.net/tasks')
       .then(response => response.json())
-      .then(data => {
-        setData(data);
+      .then(d => {
+        setData(d);
+        console.log(d)
       })
       .catch(error => {
         console.error('取得エラー:', error);
@@ -96,6 +97,7 @@ function App() {
         console.error('完全削除エラー:', error);
       });
   };
+
   return (
     <div>
       <h1>todo-mitch</h1>
@@ -110,7 +112,8 @@ function App() {
       <ul>
         {data.map(item => (
           <li key={item.id}>
-            {item.content}
+            {/* {item.content} */}
+            <p>{item.title}</p>
             <button onClick={() => setEditId(item.id)}>編集</button>
             {/* <button onClick={() => handleTempDelete(item.id)}>一時削除</button> */}
             <button onClick={() => handleDelete(item.id)}>完全削除</button>
