@@ -1,7 +1,11 @@
 import React,{ useState, useEffect } from 'react';
+import './index.css'
+
+
 
 function App() {
   const [data, setData] = useState([]);
+  const url="";
   const [content, setContent] = useState('');
   const [editId, setEditId] = useState(null);
 
@@ -96,7 +100,6 @@ function App() {
     <div>
       <h1>todo-mitch</h1>
       <div>
-        <h2>タスク追加</h2>
         <input
           type="text"
           value={content}
