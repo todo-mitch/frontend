@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { postTasks } from "../api/Task";
 
 /**
@@ -15,7 +15,7 @@ function TodoForm() {
           value={content}
           onChange={event => setContent(event.target.value)}
         />
-        <button onClick={() => postTasks}>追加</button>
+        <button onClick={() => postTasks(content)}>追加</button>
       </div>
     );
 }
