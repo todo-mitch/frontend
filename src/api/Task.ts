@@ -1,8 +1,10 @@
+import { GetTasks, PostTasks } from "../types/Task";
+
 /**
  * タスクを取得する関数
  * @param props 
  */
-export const getTasks = (setData: any) => {
+export const getTasks:GetTasks = (setData) => {
   fetch('https://todocode.azurewebsites.net/tasks')
     .then(res => res.json())
     .then(data => {
@@ -16,8 +18,7 @@ export const getTasks = (setData: any) => {
  * タスクを作成する関数
  * @param props 
  */
-export function postTasks(getTasks: any, content:any){
-
+export const postTasks: PostTasks = (content: string) => {
   fetch('https://todocode.azurewebsites.net/tasks', {
     method: 'POST',
     headers: {
@@ -28,7 +29,6 @@ export function postTasks(getTasks: any, content:any){
     .then(response => response.json())
     .then(newItem => {
       console.log('投稿結果:', newItem);
-      getTasks();
     })
     .catch(error => {console.error(error);});
 };
@@ -37,7 +37,7 @@ export function postTasks(getTasks: any, content:any){
  *  タスクを更新する関数
  * @param props 
  */
-export function putTasks(id: number, newTitle :string, getTasks:any, setEditId:any){
+export function putTasks(id: number, newTitle :string, getTasks:GetTasks, setEditId:any){
   fetch('https://todocode.azurewebsites.net/tasks/{task_id}', {
     method: 'PUT',
     headers: {
@@ -48,7 +48,6 @@ export function putTasks(id: number, newTitle :string, getTasks:any, setEditId:a
     .then(response => response.json())
     .then(updatedItem => {
       console.log('編集結果:', updatedItem);
-      getTasks();
       setEditId(null);
     })
     .catch(error => {console.error(error);});

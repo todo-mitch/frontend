@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "../types/Task";
 import { deleteTasks, getTasks, putTasks } from "../api/Task";
 import { sampleData } from "../sample/sample";
@@ -12,7 +12,7 @@ function TodoList() {
     const [editId, setEditId] = useState<number | null>(null);
 
     useEffect(() => {
-        // getTasks(); // 本番用
+        // getTasks(setTodoList); // 本番用
         setTodoList(sampleData) // 動作確認
       }, []);
     
